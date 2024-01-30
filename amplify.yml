@@ -20,6 +20,7 @@ amplify:
   # other configurations for backendA
 
 # CloudFront distribution configuration for path-based routing
+
 distribution:
   defaultPath:
     rewrite: /dashboard/index.html
