@@ -3,20 +3,32 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - npm i
     build:
       commands:
-        - npm run build -- --prod
+        - npm run ng build -- --configuration=app
   artifacts:
-    baseDirectory: dist/my-app
+    baseDirectory: dist/dashboard
     files:
       - '**/*'
   cache:
     paths:
       - node_modules/**/*
-redirects:
-  - source: /app/*
-    target: /my-app/index.html
-    status: 200
-    headers:
-      Location: /my-app/index.html
+amplify:
+  backend: 
+    name: backendA
+  # other configurations for backendA
+
+# CloudFront distribution configuration for path-based routing
+distribution:
+  defaultPath:
+    rewrite: /dashboard/index.html
+  behaviors:
+    - path: /dashboard/*
+      defaultTTL: 0
+      minTTL: 0
+      maxTTL: 0
+      forward: 
+        cookies: "all"
+        queryString: true
+      # other configuration for the first project
