@@ -6,30 +6,11 @@ frontend:
         - npm i
     build:
       commands:
-        - npm run ng build -- --configuration=app
+        - npm run ng build 
   artifacts:
-    baseDirectory: dist/dashboard
+    baseDirectory: dist/my-app
     files:
       - '**/*'
   cache:
     paths:
       - node_modules/**/*
-amplify:
-  backend: 
-    name: backendA
-  # other configurations for backendA
-
-# CloudFront distribution configuration for path-based routing
-
-distribution:
-  defaultPath:
-    rewrite: /dashboard/index.html
-  behaviors:
-    - path: /dashboard/*
-      defaultTTL: 0
-      minTTL: 0
-      maxTTL: 0
-      forward: 
-        cookies: "all"
-        queryString: true
-      # other configuration for the first project
