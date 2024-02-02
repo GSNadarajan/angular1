@@ -8,7 +8,7 @@ frontend:
       commands:
         - npm run ng build 
   artifacts:
-    baseDirectory: dist/my-app
+    baseDirectory: dist/my-app/browser
     files:
       - '**/*'
   cache:
